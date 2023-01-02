@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
-const SECRET_KEY = process.env.SCRET_KEY;
+const SECRET_KEY = process.env.SECRET_KEY;
 
-const auth = (req,res,next)=>{
+const auth = (req,res,next) => {
     try{
         let token = req.headers.authorization;
         if(token){
@@ -13,7 +13,7 @@ const auth = (req,res,next)=>{
         }
         next();
     }catch(error){
-        res.status(500).json({message: "Something went wrong"});
+        res.status(500).json({message: error});
     }
 }
 module.exports = auth;
