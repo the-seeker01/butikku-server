@@ -31,7 +31,7 @@ const verifyotp = async (req,res) => {
                     message: "Otp successfully verified."
                 });
             }else{
-                const token = jwt.sign({email: user.email,id: user._id},process.env.JWT_SECRET_KEY);
+                const token = jwt.sign({email: user.email,id: user._id},"SECRET_KEY");
                 delete user.password;
                 res.status(200).json({
                     message:"Otp successfully verified.",
@@ -83,7 +83,7 @@ const profile = async (req,res) => {
             dob: dob,
             address: address
         });
-        const token = jwt.sign({email: result.email,id: result._id},process.env.JWT_SECRET_KEY);
+        const token = jwt.sign({email: result.email,id: result._id},"SECRET_KEY");
         res.status(200).json({ user: result, token: token});
     }catch(error){
         res.status(500).json({message: error});
